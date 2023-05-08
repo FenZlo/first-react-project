@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MyButton from '../ui/button/my-button.jsx'
 import MyInput from '../ui/input/my-input.jsx';
 
-const PostForm = function ({ create, deleteAll }) {
+const PostForm = function ({ onCreate, onDeleteAll }) {
   const [inputValue, setInputValue] = useState('');
 
 
@@ -12,12 +12,12 @@ const PostForm = function ({ create, deleteAll }) {
     const newPost = {
       task: inputValue, id: Date.now()
     }
-    create(newPost);
+    onCreate(newPost);
     setInputValue('');
   }
 
   function deleteAllPosts() {
-    deleteAll();
+    onDeleteAll();
     setInputValue('');
   };
 

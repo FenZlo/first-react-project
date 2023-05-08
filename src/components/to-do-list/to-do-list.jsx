@@ -19,17 +19,13 @@ const itemCheckHandler = (id) => {
   /*Из массива posts найти элемент по id, в этом элементе изменяем поле Checked, котороя я должен создать.
     оно у меня будет true или false. Надо накинуть класс, который будет перечеркивать текст.
   */
-  const element = posts.find(el => el.id === id); 
-  if (element.hasOwnProperty('cheсked')) {
-    element.checked = false;
-  }
-  element.checked = !element.checked;  
-  setPosts(posts);
+ setPosts(posts.map(post => post.id === id ? {...post, checked: !post.checked} : post));
 }
 
 const itemDeleteHandler = (id) => {
   /*Из массива posts найти элемент по id и удалить. Через фильтр вернуть массив без этого объекта     
   */
+  setPosts(posts.filter(post => post.id !== id));
 }
 
 return (
@@ -38,7 +34,7 @@ return (
       <strong>TO-DO LIST</strong>
     </div>
     <PostForm
-    create={createPost} deleteAll={deleteAllPosts}/>
+    onCreate={createPost} onDeleteAll={deleteAllPosts}/>
     <div className='items'>
           {posts.map((post, index) =>
               <ToDoListItem 
@@ -47,7 +43,7 @@ return (
               key={post.id}
               onCheck={itemCheckHandler}
               crossed={post.checked}
-              onDelete={itemDeleteHandler}
+              onTrash={itemDeleteHandler}
               />
           )}
       </div>
