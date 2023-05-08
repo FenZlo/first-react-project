@@ -7,3 +7,10 @@
     flex: 1;    
     margin: 2px;
 }
+
+.iconBtn {
+    margin: 0;
+    padding: 0;
+    background: unset;
+    border: unset;
+}

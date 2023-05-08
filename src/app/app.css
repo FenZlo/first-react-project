@@ -94,3 +94,7 @@
     font-size: 20px;
     width: 100%;
 }
+
+.chekedItem {
+    text-decoration: line-through;
+}
