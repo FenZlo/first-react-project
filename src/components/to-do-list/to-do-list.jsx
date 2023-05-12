@@ -4,7 +4,8 @@ import ToDoListItem from '../to-do-list-item/to-do-list-item.jsx';
 
 
 const ToDoList = function () {
-const [posts, setPosts] = useState(JSON.parse(localStorage.getItem("keys")));
+let storagePosts = localStorage.getItem("keys") !== 0 ? JSON.parse(localStorage.getItem("keys")) : [];
+const [posts, setPosts] = useState(storagePosts);
 
 const createPost = (newPost) => {
   setPosts([...posts, newPost]);
@@ -27,7 +28,9 @@ const itemDeleteHandler = (id) => {
   setPosts(posts.filter(post => post.id !== id));
 }
 
-localStorage.setItem("keys", JSON.stringify(posts));
+if (localStorage.getItem("keys").length !== 0){
+  localStorage.setItem("keys", JSON.stringify(posts));
+}
 
 return (
   <div className='toDoList'>
