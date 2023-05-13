@@ -4,8 +4,9 @@ import ToDoListItem from '../to-do-list-item/to-do-list-item.jsx';
 
 
 const ToDoList = function () {
-let storagePosts = localStorage.getItem("keys") !== 0 ? JSON.parse(localStorage.getItem("keys")) : [];
-const [posts, setPosts] = useState(storagePosts);
+const [posts, setPosts] = useState(
+  localStorage.getItem("keys").length !== 0 ? JSON.parse(localStorage.getItem("keys")) : []
+  );
 
 const createPost = (newPost) => {
   setPosts([...posts, newPost]);
