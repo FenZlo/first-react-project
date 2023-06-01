@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PostForm from '../post-form/post-form.jsx';
 import ToDoListItem from '../to-do-list-item/to-do-list-item.jsx';
 
 
 const ToDoList = function () {
-const [posts, setPosts] = useState([]);
-console.log(posts)
+const [posts, setPosts] = useState(
+  localStorage.getItem("keys") === undefined ? [] : JSON.parse(localStorage.getItem("keys")));
+  console.log(posts)
 
 const createPost = (newPost) => {
   setPosts([...posts, newPost]);
@@ -27,6 +28,10 @@ const itemDeleteHandler = (id) => {
   */
   setPosts(posts.filter(post => post.id !== id));
 }
+
+useEffect(() => {
+  localStorage.setItem("keys", JSON.stringify(posts));
+}, [posts]);
 
 return (
   <div className='toDoList'>
